@@ -3,132 +3,186 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Larklock Portfolio</title>
+<title>Larklock · Blender add-ons for makers</title>
 <meta name="description" content="Larklock makes Blender add-ons for woodworkers, 3D-print makers and product artists: Carvable turns images and height maps into exact bas-reliefs for CNC carving and 3D printing.">
+<link rel="canonical" href="https://blender.larklock.com/">
+<meta name="theme-color" content="#0f0d0b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f0d0b'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Georgia,serif' font-size='44' fill='%23c9a66b'%3EL%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://blender.larklock.com/">
+<meta property="og:title" content="Larklock · Blender add-ons for makers">
+<meta property="og:description" content="Carvable turns images and height maps into exact bas-reliefs for CNC carving and 3D printing, in millimetres.">
+<meta property="og:image" content="https://blender.larklock.com/01_hero_image_to_relief-1200.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="600">
+<meta property="og:image:alt" content="A rosette height map next to the same rosette carved in a walnut plate">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;112,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: a single reading column (max 1080px) like a product data sheet:
-   name block, wide product images, then a spec table in millimetres. */
+/* A dark, warm gallery page: the renders sit on near-black like photographs
+   on a wall. Serif display type for the craft, mono for the measurements,
+   one brass accent. The theme is fixed dark on purpose (the images are dark). */
 :root {
-  --paper: #f2f3f1;          /* cool shop-paper grey, slight green bias */
-  --sheet: #ffffff;
-  --ink: #1b2124;            /* graphite */
-  --muted: #5b6569;
-  --rule: #d6dad8;
-  --steel: #2c5875;          /* router-bit steel blue: links and marks */
-  --amber: #b8641c;          /* the tool-check colour from the add-on */
-  --display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --bg: #0f0d0b;             /* warm near-black, close to the render backdrops */
+  --ink: #f2ece2;            /* ivory */
+  --ink-soft: #d6cdbf;
+  --muted: #9f968a;
+  --rule: #2a2520;
+  --brass: #c9a66b;          /* accent: walnut oil, the bottle cap in the camera shots */
+  --display: "Cormorant Garamond", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
   --body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --pad-l: max(20px, env(safe-area-inset-left, 0px));
+  --pad-r: max(20px, env(safe-area-inset-right, 0px));
+  color-scheme: dark;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #121618; --sheet: #191e21; --ink: #e5e8e6; --muted: #9aa4a8;
-    --rule: #2c3438; --steel: #84b3d1; --amber: #e39250; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --paper: #121618; --sheet: #191e21; --ink: #e5e8e6; --muted: #9aa4a8;
-  --rule: #2c3438; --steel: #84b3d1; --amber: #e39250; color-scheme: dark;
-}
-
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
 body {
-  background: var(--paper);
+  margin: 0;
+  background: var(--bg);
   color: var(--ink);
-  font: 400 16px/1.6 var(--body);
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  font: 400 16px/1.65 var(--body);
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
-.wrap { max-width: 1080px; margin: 0 auto; padding-block: 48px 64px; display: grid; gap: 56px; }
-a { color: var(--steel); text-underline-offset: 3px; }
-a:focus-visible { outline: 2px solid var(--steel); outline-offset: 2px; border-radius: 2px; }
-h1, h2, h3 { font-family: var(--display); font-stretch: 112%; text-wrap: balance; margin: 0; line-height: 1.12; }
-p { margin: 0; max-width: 66ch; }
-.label { font: 500 12px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+a:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; border-radius: 2px; }
+::selection { background: var(--brass); color: var(--bg); }
+p { margin: 0; }
+[hidden] { display: none !important; }
 
-/* masthead */
-header.mast { display: grid; gap: 14px; border-bottom: 1px solid var(--rule); padding-bottom: 32px; }
-header.mast h1 { font-size: clamp(34px, 5.4vw, 56px); font-weight: 800; letter-spacing: -.01em; }
-header.mast p { font-size: 18px; color: var(--muted); }
-.contact { font-family: var(--mono); font-size: 14px; color: var(--ink); }
+.wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-left: var(--pad-l); padding-right: var(--pad-r); }
+.kicker { font: 500 12px/1.4 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.kicker b { font-weight: 500; color: var(--brass); }
 
-/* product block */
-section.product { display: grid; gap: 28px; }
-.product-head { display: grid; gap: 10px; }
-.product-head h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; }
-.product-head .tag { display: flex; flex-wrap: wrap; gap: 8px 16px; }
-.pill { font: 500 13px/1 var(--mono); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 3px; background: var(--sheet); }
-.pill.live { border-color: var(--steel); color: var(--steel); }
-.pill.dev { border-color: var(--amber); color: var(--amber); }
-.lead { font-size: 18px; }
+/* top bar */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: max(26px, env(safe-area-inset-top, 0px)); padding-bottom: 26px; border-bottom: 1px solid var(--rule); }
+.mark { font: 600 19px/1 var(--display); letter-spacing: .34em; text-decoration: none; color: var(--ink); }
+.top nav { display: flex; gap: 28px; }
+.top nav a { font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+.top nav a:hover { color: var(--brass); }
+@media (max-width: 640px) { .top nav .opt { display: none; } }
 
-figure { margin: 0; display: grid; gap: 8px; }
-figure img { width: 100%; height: auto; display: block; border-radius: 4px; background: var(--sheet); border: 1px solid var(--rule); }
-figcaption { font-size: 14px; color: var(--muted); }
-.gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 20px; }
-@media (max-width: 720px) { .gallery { grid-template-columns: minmax(0, 1fr); } }
+/* intro */
+.intro { display: grid; gap: 24px; padding-top: clamp(56px, 10vw, 120px); padding-bottom: clamp(40px, 6vw, 72px); }
+.intro .kicker { color: var(--brass); }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(42px, 6.6vw, 80px); line-height: 1.02; letter-spacing: -.012em; max-width: 21ch; }
+.lede { font-size: clamp(17px, 1.6vw, 19px); color: var(--ink-soft); max-width: 58ch; }
+.mail { justify-self: start; font: 500 14px/1.6 var(--mono); color: var(--brass); text-decoration: none; border-bottom: 1px solid rgba(201, 166, 107, .4); }
+.mail:hover { border-bottom-color: var(--brass); }
 
-.cols { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
-@media (max-width: 820px) { .cols { grid-template-columns: minmax(0, 1fr); } }
-ul.points { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
-ul.points li { padding-left: 18px; position: relative; }
-ul.points li::before { content: ""; position: absolute; left: 0; top: .72em; width: 8px; height: 2px; background: var(--amber); }
-ul.points b { font-weight: 600; }
+/* images */
+figure { margin: 0; display: grid; gap: 12px; }
+figure img { width: 100%; border-radius: 2px; outline: 1px solid rgba(255, 255, 255, .05); outline-offset: -1px; }
+figcaption { font: italic 500 17px/1.4 var(--display); color: var(--muted); }
+.hero { max-width: 1440px; margin-inline: auto; padding-inline: clamp(0px, 3vw, 40px); }
+.hero figcaption { width: 100%; max-width: 1120px; margin-inline: auto; padding-left: var(--pad-l); padding-right: var(--pad-r); }
+@media (min-width: 1200px) { .hero figcaption { padding-inline: 0; max-width: 1080px; } }
+@media (max-width: 640px) { .hero { padding-inline: 0; } .hero video { border-radius: 0; } }
+
+/* demo film: silent, loops while on screen; pause is the viewer's choice */
+.film { position: relative; }
+.film video { width: 100%; height: auto; aspect-ratio: 16 / 9; display: block; border-radius: 2px; background: #1c1814; }
+.film-ctl { position: absolute; top: clamp(10px, 2vw, 20px); right: clamp(10px, 2vw, 20px); display: flex; gap: 8px; }
+.film-btn { font: 500 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink); background: rgba(15, 13, 11, .62); border: 1px solid rgba(201, 166, 107, .5); border-radius: 999px; padding: 9px 13px; cursor: pointer; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.film-btn:hover { color: var(--brass); border-color: var(--brass); }
+.film-btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+/* products */
+main { display: grid; gap: clamp(96px, 12vw, 160px); padding-top: clamp(80px, 11vw, 136px); }
+.product { display: grid; gap: clamp(32px, 4vw, 52px); }
+.head { display: grid; gap: 16px; border-top: 1px solid var(--rule); padding-top: 28px; }
+h2 { font-size: clamp(48px, 6.4vw, 80px); line-height: 1; letter-spacing: -.01em; }
+h2 em { font-size: .42em; color: var(--muted); letter-spacing: 0; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tag { font: 500 12px/1 var(--mono); letter-spacing: .04em; padding: 8px 13px; border: 1px solid var(--rule); border-radius: 999px; color: var(--ink-soft); }
+.tag.gold { border-color: rgba(201, 166, 107, .55); color: var(--brass); }
+.lead { font-size: clamp(18px, 1.75vw, 21px); line-height: 1.55; max-width: 60ch; }
+
+.cols { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+@media (max-width: 860px) { .cols { grid-template-columns: minmax(0, 1fr); } }
+.points { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+.points li { position: relative; padding-left: 28px; color: var(--ink-soft); }
+.points li::before { content: ""; position: absolute; left: 0; top: .82em; width: 14px; height: 1px; background: var(--brass); }
+.points b { font-weight: 600; color: var(--ink); }
 
 /* spec sheet */
-.spec { background: var(--sheet); border: 1px solid var(--rule); border-radius: 4px; overflow-x: auto; }
+.spec { overflow-x: auto; }
 .spec table { width: 100%; border-collapse: collapse; font-size: 14px; }
-.spec caption { text-align: left; padding: 14px 16px 6px; }
-.spec th, .spec td { text-align: left; padding: 9px 16px; border-top: 1px solid var(--rule); vertical-align: top; }
-.spec th { font-weight: 500; color: var(--muted); width: 38%; }
-.spec td { font-family: var(--mono); font-size: 13.5px; font-variant-numeric: tabular-nums; }
+.spec caption { text-align: left; padding-bottom: 12px; }
+.spec th, .spec td { text-align: left; vertical-align: top; padding: 11px 0; border-top: 1px solid var(--rule); }
+.spec tr:last-child th, .spec tr:last-child td { border-bottom: 1px solid var(--rule); }
+.spec th { width: 42%; padding-right: 16px; font-weight: 400; color: var(--muted); }
+.spec td { font: 400 13px/1.55 var(--mono); color: var(--ink); font-variant-numeric: tabular-nums; }
 
-/* camera add-on strip */
-.strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; max-width: 560px; min-width: 0; }
-.strip img { width: 100%; height: auto; max-width: 100%; aspect-ratio: 9 / 16; object-fit: cover; display: block; border-radius: 4px; border: 1px solid var(--rule); background: var(--sheet); }
+.gallery { display: grid; gap: clamp(44px, 5vw, 72px); }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px clamp(20px, 3vw, 32px); }
+@media (max-width: 720px) { .pair { grid-template-columns: minmax(0, 1fr); } }
 
-.note { border-top: 1px solid var(--rule); padding-top: 24px; display: grid; gap: 10px; }
-.note h3 { font-size: 18px; font-weight: 600; }
-.note p { color: var(--muted); font-size: 15px; }
-footer { border-top: 1px solid var(--rule); padding-top: 20px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; color: var(--muted); font-size: 14px; }
+/* camera add-on */
+.strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.strip img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 2px; }
+.cols p { color: var(--ink-soft); }
 
-/* base reset (the same as the page had where it was first published) */
-*, *::before, *::after { box-sizing: border-box; }
-:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
-body { margin: 0; }
-img { max-width: 100%; }
-[hidden] { display: none !important; }
+/* note and footer */
+.note { display: grid; gap: 12px; border-top: 1px solid var(--rule); padding-top: 28px; }
+.note h3 { font-size: 28px; line-height: 1.2; }
+.note p { max-width: 72ch; color: var(--muted); font-size: 15px; }
+footer { margin-top: clamp(96px, 11vw, 144px); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px 24px; border-top: 1px solid var(--rule); padding-top: 28px; padding-bottom: 44px; color: var(--muted); font-size: 14px; }
+footer .mark { font-size: 16px; }
+footer a.mail { font-size: 13px; }
 </style>
 </head>
 <body>
 
-<div class="wrap">
+<header class="top wrap">
+  <a class="mark" href="/" aria-label="Larklock, home">LARKLOCK</a>
+  <nav aria-label="Sections">
+    <a class="opt" href="#carvable">Carvable</a>
+    <a class="opt" href="#camera">Product Camera</a>
+    <a href="mailto:hello@larklock.com">Contact</a>
+  </nav>
+</header>
 
-  <header class="mast">
-    <span class="label">Larklock · Blender tools for makers</span>
-    <h1>Blender add-ons that turn designs into things you can carve, print and film.</h1>
-    <p>Larklock builds small, precise Blender add-ons for woodworkers, 3D-print makers and product artists. Every release is tested on the current Blender LTS versions and works fully offline.</p>
-    <span class="contact">hello@larklock.com</span>
-  </header>
+<section class="intro wrap" aria-labelledby="title">
+  <span class="kicker">Blender tools for makers</span>
+  <h1 id="title">Blender add-ons that turn designs into things you can carve, print and film.</h1>
+  <p class="lede">Larklock builds small, precise Blender add-ons for woodworkers, 3D-print makers and product artists. Every release is tested on the current Blender LTS versions and works fully offline.</p>
+  <a class="mail" href="mailto:hello@larklock.com">hello@larklock.com</a>
+</section>
 
-  <section class="product" aria-labelledby="carvable">
-    <div class="product-head">
-      <span class="label">Blender add-on · version 1.0.0</span>
-      <h2 id="carvable">Carvable</h2>
-      <div class="tag">
-        <span class="pill live">Ready for release</span>
-        <span class="pill">Blender 4.5 LTS – 5.2 LTS</span>
-        <span class="pill">GPL-3.0-or-later</span>
+<figure class="hero">
+  <div class="film">
+    <video id="demo" muted loop playsinline preload="metadata" poster="carvable_demo-poster.jpg" width="1920" height="1080" aria-label="Carvable demo film, 26 seconds">
+      <source src="carvable_demo-960.mp4" type="video/mp4" media="(max-width: 700px)">
+      <source src="carvable_demo.mp4" type="video/mp4">
+    </video>
+    <div class="film-ctl">
+      <button type="button" class="film-btn" data-act="play">Play</button>
+    </div>
+  </div>
+  <figcaption>Carvable in 26 seconds: a height map becomes a walnut plate ready to carve. The plate is the add-on’s own output, rendered in Blender.</figcaption>
+</figure>
+
+<main class="wrap">
+
+  <section class="product" id="carvable" aria-labelledby="carvable-name">
+    <div class="head">
+      <span class="kicker"><b>01</b> · Blender add-on · version 1.0.0</span>
+      <h2 id="carvable-name">Carvable</h2>
+      <div class="tags">
+        <span class="tag gold">Ready for release</span>
+        <span class="tag">Blender 4.5 LTS – 5.2 LTS</span>
+        <span class="tag">GPL-3.0-or-later</span>
       </div>
     </div>
     <p class="lead">Turns an image or height map into an exact bas-relief for CNC carving and 3D printing: sizes in millimetres, draft angles for tapered bits, a check of what your router bit can really carve, a closed STL and a 16-bit height map for your CAM program.</p>
-
-    <figure>
-      <img src="01_hero_image_to_relief.jpg" width="1600" height="800" alt="A grayscale rosette height map next to the same rosette carved in an oak board, with a ball-nose router bit">
-      <figcaption>From a 16-bit height map to a carved oak plate. Rendered in Blender (Cycles) from the add-on’s own output.</figcaption>
-    </figure>
 
     <div class="cols">
       <ul class="points">
@@ -142,7 +196,7 @@ img { max-width: 100%; }
 
       <div class="spec">
         <table>
-          <caption class="label">Defaults and measurements</caption>
+          <caption class="kicker">Defaults and measurements</caption>
           <tbody>
             <tr><th>Plate</th><td>200 mm, 5 mm relief in 18 mm stock</td></tr>
             <tr><th>Frame</th><td>10 mm, flush with the top</td></tr>
@@ -160,35 +214,41 @@ img { max-width: 100%; }
 
     <div class="gallery">
       <figure>
-        <img src="03_tool_check.jpg" width="1600" height="800" loading="lazy" alt="Tool check colours on a carved relief: orange to red where a 1/4 inch ball nose cannot reach">
-        <figcaption>Tool check: orange to red marks material a 1/4″ ball nose cannot reach.</figcaption>
+        <img src="01_hero_image_to_relief-1200.jpg" srcset="01_hero_image_to_relief-1200.jpg 1200w, 01_hero_image_to_relief.jpg 2400w" sizes="(min-width: 1120px) 1080px, 100vw" width="2400" height="1200" loading="lazy" alt="A grayscale rosette height map next to the same rosette carved in a walnut plate, on an oak workbench with a ball-nose router bit">
+        <figcaption>From a 16-bit height map to a carved walnut plate on an oak bench. The plate is the add-on’s own output, rendered in Blender (Cycles).</figcaption>
       </figure>
       <figure>
-        <img src="02_depth_compression.jpg" width="1600" height="800" loading="lazy" alt="The same deep medallion pressed into 5 mm with Linear and with Detail Preserving compression">
-        <figcaption>A deep scene in the same 5 mm: Linear compared with Detail Preserving.</figcaption>
-      </figure>
-      <figure>
-        <img src="05_outputs_for_cam.jpg" width="1600" height="800" loading="lazy" alt="A 16-bit height map card next to the closed STL plate">
+        <img src="05_outputs_for_cam-1200.jpg" srcset="05_outputs_for_cam-1200.jpg 1200w, 05_outputs_for_cam.jpg 2400w" sizes="(min-width: 1120px) 1080px, 100vw" width="2400" height="1200" loading="lazy" alt="A 16-bit height map card next to the closed STL plate in walnut, on an oak workbench">
         <figcaption>Two outputs: a 16-bit height map with a dimensions file, and a closed STL in millimetres.</figcaption>
       </figure>
+      <div class="pair">
+        <figure>
+          <img src="03_tool_check-1200.jpg" srcset="03_tool_check-1200.jpg 1200w, 03_tool_check.jpg 2400w" sizes="(min-width: 1120px) 530px, (min-width: 720px) 50vw, 100vw" width="2400" height="1200" loading="lazy" alt="Tool check colours on a carved relief: orange to red where a 1/4 inch ball nose cannot reach">
+          <figcaption>Tool check: orange to red marks material a 1/4″ ball nose cannot reach.</figcaption>
+        </figure>
+        <figure>
+          <img src="02_depth_compression-1200.jpg" srcset="02_depth_compression-1200.jpg 1200w, 02_depth_compression.jpg 2400w" sizes="(min-width: 1120px) 530px, (min-width: 720px) 50vw, 100vw" width="2400" height="1200" loading="lazy" alt="The same deep medallion pressed into 5 mm with Linear and with Detail Preserving compression">
+          <figcaption>A deep scene in the same 5 mm: Linear compared with Detail Preserving.</figcaption>
+        </figure>
+      </div>
       <figure>
-        <img src="04_panel_in_blender.jpg" width="1600" height="800" loading="lazy" alt="The Carvable panel in Blender's sidebar next to a relief preview">
+        <img src="04_panel_in_blender-1200.jpg" srcset="04_panel_in_blender-1200.jpg 1200w, 04_panel_in_blender.jpg 2400w" sizes="(min-width: 1120px) 1080px, 100vw" width="2400" height="1200" loading="lazy" alt="The Carvable panel in Blender's sidebar next to a relief preview">
         <figcaption>The Carvable tab in Blender’s sidebar, with the relief built at real size in the scene.</figcaption>
       </figure>
     </div>
   </section>
 
-  <section class="product" aria-labelledby="camera">
-    <div class="product-head">
-      <span class="label">Blender add-on · in development</span>
-      <h2 id="camera">Product Camera <span style="font-weight:600">(working title)</span></h2>
-      <div class="tag">
-        <span class="pill dev">In development</span>
-        <span class="pill">9:16 · 4:5 · 3:4 · 1:1 · 16:9</span>
+  <section class="product" id="camera" aria-labelledby="camera-name">
+    <div class="head">
+      <span class="kicker"><b>02</b> · Blender add-on · in development</span>
+      <h2 id="camera-name">Product Camera <em>(working title)</em></h2>
+      <div class="tags">
+        <span class="tag gold">In development</span>
+        <span class="tag">9:16 · 4:5 · 3:4 · 1:1 · 16:9</span>
       </div>
     </div>
     <div class="cols">
-      <p>Camera moves for product videos that frame the product by themselves. You choose a shot from a library of 14 (orbit, push-in, crane, detail pass, dolly zoom and more); the add-on computes the camera for every frame so the product sits inside the safe zone of each format, clear of the Reels and TikTok interface, whether it is a 2 cm ring or a 4.5 m car. A quality check lists any frame where something hides the product or the camera enters an object.</p>
+      <p class="lead">Camera moves for product videos that frame the product by themselves. You choose a shot from a library of 14 (orbit, push-in, crane, detail pass, dolly zoom and more); the add-on computes the camera for every frame so the product sits inside the safe zone of each format, clear of the Reels and TikTok interface, whether it is a 2 cm ring or a 4.5 m car. A quality check lists any frame where something hides the product or the camera enters an object.</p>
       <div class="strip" aria-label="Three frames from a test sequence">
         <img src="camera_1.jpg" width="432" height="768" loading="lazy" alt="Hero orbit around a perfume bottle, 9:16 frame">
         <img src="camera_2.jpg" width="432" height="768" loading="lazy" alt="Push-in reveal towards the bottle, 9:16 frame">
@@ -199,14 +259,39 @@ img { max-width: 100%; }
 
   <section class="note" aria-labelledby="how">
     <h3 id="how">How our add-ons are made</h3>
-    <p>The code is written with an AI coding assistant (Claude by Anthropic), working to specifications written and approved by Larklock. Larklock chooses what to build and for whom, sets the goals and limits, reviews the results and makes the product decisions: scope, price, name and which camera shots go into the library. Every feature is covered by automated tests on Blender 4.5 and 5.2. The add-ons themselves contain no AI and work offline.</p>
+    <p>The code is written with an AI coding assistant (Claude by Anthropic), working to specifications written and approved by Larklock. Larklock chooses what to build and for whom, sets the goals and limits, reviews the results and makes the product decisions: scope, price, name and which camera shots go into the library. Every feature is covered by automated tests on Blender 4.5 and 5.2. The add-ons themselves contain no AI and work offline. The product images and the demo film are rendered in Blender from Carvable’s own output; only the wood colours (walnut, oak bench) and the out-of-focus workshop behind them come from images generated with Google’s image model.</p>
   </section>
 
-  <footer>
-    <span>© 2026 Larklock</span>
-    <span>hello@larklock.com</span>
-  </footer>
+</main>
 
-</div>
+<footer>
+  <div class="wrap">
+    <span class="mark">LARKLOCK</span>
+    <span>© 2026 Larklock · Blender add-ons for makers</span>
+    <a class="mail" href="mailto:hello@larklock.com">hello@larklock.com</a>
+  </div>
+</footer>
+
+<script>
+/* The silent film loops while it is on screen (not with "reduce motion");
+   the button pauses and resumes it. */
+(() => {
+  const v = document.getElementById("demo");
+  const playBtn = document.querySelector('[data-act="play"]');
+  let held = matchMedia("(prefers-reduced-motion: reduce)").matches;   // paused by choice
+  const sync = () => { playBtn.textContent = v.paused ? "Play" : "Pause"; };
+  const play = () => v.play().catch(sync);
+  ["play", "pause", "ended"].forEach(e => v.addEventListener(e, sync));
+  playBtn.addEventListener("click", () => {
+    if (v.paused) { held = false; play(); } else { held = true; v.pause(); }
+  });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { if (!held) play(); } else if (!v.paused) v.pause();
+    }, { threshold: .35 }).observe(v);
+  } else if (!held) play();
+  sync();
+})();
+</script>
 </body>
 </html>
