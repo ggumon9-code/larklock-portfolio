@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Larklock · Blender add-ons for makers</title>
-<meta name="description" content="Larklock makes Blender add-ons for woodworkers, 3D-print makers and product artists: Carvable turns images and height maps into exact bas-reliefs for CNC carving and 3D printing.">
+<meta name="description" content="Larklock makes Blender add-ons for woodworkers, 3D-print makers and product artists: Carvable turns images and height maps into exact bas-reliefs for CNC carving and 3D printing; Framekeeper makes product camera moves that keep the product framed in every format.">
 <link rel="canonical" href="https://blender.larklock.com/">
 <meta name="theme-color" content="#0f0d0b">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f0d0b'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Georgia,serif' font-size='44' fill='%23c9a66b'%3EL%3C/text%3E%3C/svg%3E">
@@ -124,9 +124,6 @@ h2 em { font-size: .42em; color: var(--muted); letter-spacing: 0; }
 .pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px clamp(20px, 3vw, 32px); }
 @media (max-width: 720px) { .pair { grid-template-columns: minmax(0, 1fr); } }
 
-/* camera add-on */
-.strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.strip img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 2px; }
 .cols p { color: var(--ink-soft); }
 
 /* note and footer */
@@ -145,7 +142,7 @@ footer a.mail { font-size: 13px; }
   <a class="mark" href="/" aria-label="Larklock, home">LARKLOCK</a>
   <nav aria-label="Sections">
     <a class="opt" href="#carvable">Carvable</a>
-    <a class="opt" href="#camera">Product Camera</a>
+    <a class="opt" href="#framekeeper">Framekeeper</a>
     <a href="mailto:hello@larklock.com">Contact</a>
   </nav>
 </header>
@@ -159,12 +156,12 @@ footer a.mail { font-size: 13px; }
 
 <figure class="hero">
   <div class="film">
-    <video id="demo" muted loop playsinline preload="metadata" poster="carvable_demo-poster.jpg" width="1920" height="1080" aria-label="Carvable demo film, 26 seconds">
+    <video muted loop playsinline preload="metadata" poster="carvable_demo-poster.jpg" width="1920" height="1080" aria-label="Carvable demo film, 26 seconds">
       <source src="carvable_demo-960.mp4" type="video/mp4" media="(max-width: 700px)">
       <source src="carvable_demo.mp4" type="video/mp4">
     </video>
     <div class="film-ctl">
-      <button type="button" class="film-btn" data-act="play">Play</button>
+      <button type="button" class="film-btn">Play</button>
     </div>
   </div>
   <figcaption>Carvable in 26 seconds: a height map becomes a walnut plate ready to carve. The plate is the add-on’s own output, rendered in Blender.</figcaption>
@@ -214,11 +211,11 @@ footer a.mail { font-size: 13px; }
 
     <div class="gallery">
       <figure>
-        <img src="01_hero_image_to_relief-1200.jpg" srcset="01_hero_image_to_relief-1200.jpg 1200w, 01_hero_image_to_relief.jpg 2400w" sizes="(min-width: 1120px) 1080px, 100vw" width="2400" height="1200" loading="lazy" alt="A grayscale rosette height map next to the same rosette carved in a walnut plate, on an oak workbench with a ball-nose router bit">
+        <img src="01_hero_image_to_relief-1200.jpg" srcset="01_hero_image_to_relief-1200.jpg 1200w, 01_hero_image_to_relief.jpg 2400w" sizes="(min-width: 1120px) 1080px, 100vw" width="2400" height="1200" loading="lazy" alt="A grayscale rosette height map next to the same rosette carved in a walnut plate, on a pale oak workbench with a ball-nose router bit">
         <figcaption>From a 16-bit height map to a carved walnut plate on an oak bench. The plate is the add-on’s own output, rendered in Blender (Cycles).</figcaption>
       </figure>
       <figure>
-        <img src="05_outputs_for_cam-1200.jpg" srcset="05_outputs_for_cam-1200.jpg 1200w, 05_outputs_for_cam.jpg 2400w" sizes="(min-width: 1120px) 1080px, 100vw" width="2400" height="1200" loading="lazy" alt="A 16-bit height map card next to the closed STL plate in walnut, on an oak workbench">
+        <img src="05_outputs_for_cam-1200.jpg" srcset="05_outputs_for_cam-1200.jpg 1200w, 05_outputs_for_cam.jpg 2400w" sizes="(min-width: 1120px) 1080px, 100vw" width="2400" height="1200" loading="lazy" alt="A 16-bit height map card next to the closed STL plate in walnut, on a pale oak workbench">
         <figcaption>Two outputs: a 16-bit height map with a dimensions file, and a closed STL in millimetres.</figcaption>
       </figure>
       <div class="pair">
@@ -227,7 +224,7 @@ footer a.mail { font-size: 13px; }
           <figcaption>Tool check: orange to red marks material a 1/4″ ball nose cannot reach.</figcaption>
         </figure>
         <figure>
-          <img src="02_depth_compression-1200.jpg" srcset="02_depth_compression-1200.jpg 1200w, 02_depth_compression.jpg 2400w" sizes="(min-width: 1120px) 530px, (min-width: 720px) 50vw, 100vw" width="2400" height="1200" loading="lazy" alt="Two pale wooden plates on an oak workbench: the same deep medallion pressed into 5 mm with Linear and with Detail Preserving compression">
+          <img src="02_depth_compression-1200.jpg" srcset="02_depth_compression-1200.jpg 1200w, 02_depth_compression.jpg 2400w" sizes="(min-width: 1120px) 530px, (min-width: 720px) 50vw, 100vw" width="2400" height="1200" loading="lazy" alt="Two walnut plates on a pale oak workbench: the same deep medallion pressed into 5 mm with Linear and with Detail Preserving compression">
           <figcaption>A deep scene in the same 5 mm: Linear compared with Detail Preserving.</figcaption>
         </figure>
       </div>
@@ -238,28 +235,91 @@ footer a.mail { font-size: 13px; }
     </div>
   </section>
 
-  <section class="product" id="camera" aria-labelledby="camera-name">
+  <section class="product" id="framekeeper" aria-labelledby="framekeeper-name">
     <div class="head">
-      <span class="kicker"><b>02</b> · Blender add-on · in development</span>
-      <h2 id="camera-name">Product Camera <em>(working title)</em></h2>
+      <span class="kicker"><b>02</b> · Blender add-on · version 1.0.0</span>
+      <h2 id="framekeeper-name">Framekeeper</h2>
       <div class="tags">
-        <span class="tag gold">In development</span>
+        <span class="tag gold">Coming after Carvable</span>
+        <span class="tag">Blender 4.5 LTS – 5.2 LTS</span>
         <span class="tag">9:16 · 4:5 · 3:4 · 1:1 · 16:9</span>
+        <span class="tag">GPL-3.0-or-later</span>
       </div>
     </div>
-    <div class="cols">
-      <p class="lead">Camera moves for product videos that frame the product by themselves. You choose a shot from a library of 14 (orbit, push-in, crane, detail pass, dolly zoom and more); the add-on computes the camera for every frame so the product sits inside the safe zone of each format, clear of the Reels and TikTok interface, whether it is a 2 cm ring or a 4.5 m car. A quality check lists any frame where something hides the product or the camera enters an object.</p>
-      <div class="strip" aria-label="Three frames from a test sequence">
-        <img src="camera_1.jpg" width="432" height="768" loading="lazy" alt="Hero orbit around a perfume bottle, 9:16 frame">
-        <img src="camera_2.jpg" width="432" height="768" loading="lazy" alt="Push-in reveal towards the bottle, 9:16 frame">
-        <img src="camera_3.jpg" width="432" height="768" loading="lazy" alt="Close-up of the bottle cap, 9:16 frame">
+    <p class="lead">Camera moves that frame your product themselves: a 2 cm ring or a 1.6 m workbench, in every format from vertical to 16:9. Every frame is computed, and every frame is checked.</p>
+
+    <figure>
+      <div class="film">
+        <video muted loop playsinline preload="metadata" poster="framekeeper_demo-poster.jpg" width="1920" height="1080" aria-label="Framekeeper demo film, 20 seconds">
+          <source src="framekeeper_demo-960.mp4" type="video/mp4" media="(max-width: 700px)">
+          <source src="framekeeper_demo.mp4" type="video/mp4">
+        </video>
+        <div class="film-ctl">
+          <button type="button" class="film-btn">Play</button>
+        </div>
       </div>
+      <figcaption>Framekeeper in 20 seconds: one camera move keeps a ring, a carved plate and a workbench framed alike, then the shot goes vertical, clear of the captions. Every camera move in the film was computed by the add-on.</figcaption>
+    </figure>
+
+    <div class="cols">
+      <ul class="points">
+        <li><b>Exact, not guessed.</b> For every frame the camera distance is solved from the product’s convex hull and the edges of the safe zone. In our tests the camera matches Blender’s own projection to within 0.000001 of the frame.</li>
+        <li><b>Any size, one shot.</b> Shots are made of composition, not camera positions. Every shot is tested on a ring, a bottle and a car in every format: 210 combinations, the product inside the safe zone in every frame.</li>
+        <li><b>Made for vertical video.</b> The 9:16 safe zone keeps the product clear of the captions and buttons that Meta’s Reels ad guide reserves for the app’s interface.</li>
+        <li><b>Check Shots.</b> One click lists the frames where the product leaves the safe zone, something hides it, the camera is inside an object, or motion blur pushes it out.</li>
+        <li><b>Capture from Camera.</b> Any existing camera move becomes a shot: replayed exactly on the same product, re-framed on another product or in another format.</li>
+        <li><b>Your scene stays yours.</b> Framekeeper never changes your objects; <i>Remove Cameras</i> deletes only what it made.</li>
+      </ul>
+
+      <div class="spec">
+        <table>
+          <caption class="kicker">Library and measurements</caption>
+          <tbody>
+            <tr><th>Shot library</th><td>14 hand-made shots, each adjustable</td></tr>
+            <tr><th>Formats</th><td>9:16, 4:5, 3:4, 1:1, 16:9</td></tr>
+            <tr><th>9:16 safe zone</th><td>14&nbsp;% top, 35&nbsp;% bottom, 6&nbsp;% each side</td></tr>
+            <tr><th>Build, 15 shots (1425 frames)</th><td>≈ 0.2 s</td></tr>
+            <tr><th>Product hull, 1 million points</th><td>≈ 1.3 s, once</td></tr>
+            <tr><th>Automated tests</th><td>78, on Blender 4.5.14 LTS, 5.0.1, 5.1.2 and 5.2.2 LTS</td></tr>
+            <tr><th>Network</th><td>none: no license server, no telemetry</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <figure>
+        <img src="framekeeper_01_same_shot_any_size-1200.jpg" srcset="framekeeper_01_same_shot_any_size-1200.jpg 1200w, framekeeper_01_same_shot_any_size.jpg 2400w" sizes="(min-width: 1120px) 1080px, 100vw" width="2400" height="1200" loading="lazy" alt="Three vertical frames from the same camera move: a gold signet ring, a carved walnut plate and a pale oak workbench, each framed the same way inside a dashed 9:16 safe zone">
+        <figcaption>Same shot, same frame: a 2 cm signet ring, a 20 cm carved plate and a 1.6 m workbench get the same framing.</figcaption>
+      </figure>
+      <figure>
+        <img src="framekeeper_02_three_sizes_four_formats-1200.jpg" srcset="framekeeper_02_three_sizes_four_formats-1200.jpg 1200w, framekeeper_02_three_sizes_four_formats.jpg 2400w" sizes="(min-width: 1120px) 1080px, 100vw" width="2400" height="1200" loading="lazy" alt="A grid of twelve frames: ring, plate and workbench in rows, the formats 9:16, 4:5, 1:1 and 16:9 in columns, all framed alike">
+        <figcaption>One camera move, three product sizes, four formats: the same moment of the same shot, framed alike.</figcaption>
+      </figure>
+      <div class="pair">
+        <figure>
+          <img src="framekeeper_03_vertical_safe_zone-1200.jpg" srcset="framekeeper_03_vertical_safe_zone-1200.jpg 1200w, framekeeper_03_vertical_safe_zone.jpg 2400w" sizes="(min-width: 1120px) 530px, (min-width: 720px) 50vw, 100vw" width="2400" height="1200" loading="lazy" alt="A phone showing a vertical video of the signet ring, with the safe zone drawn above the captions and buttons">
+          <figcaption>In 9:16 the product stays clear of the captions and buttons of vertical video apps.</figcaption>
+        </figure>
+        <figure>
+          <img src="framekeeper_05_capture_from_camera-1200.jpg" srcset="framekeeper_05_capture_from_camera-1200.jpg 1200w, framekeeper_05_capture_from_camera.jpg 2400w" sizes="(min-width: 1120px) 530px, (min-width: 720px) 50vw, 100vw" width="2400" height="1200" loading="lazy" alt="Left: a hand-keyed 16:9 camera move on the carved plate. Right: the same move replayed on the ring in 9:16">
+          <figcaption>Capture from Camera: an old hand-keyed 16:9 move, replayed on another product in 9:16.</figcaption>
+        </figure>
+      </div>
+      <figure>
+        <img src="framekeeper_06_shot_library-1200.jpg" srcset="framekeeper_06_shot_library-1200.jpg 1200w, framekeeper_06_shot_library.jpg 2400w" sizes="(min-width: 1120px) 1080px, 100vw" width="2400" height="1200" loading="lazy" alt="Fourteen frames of the gold signet ring, one from each shot in the library, each labelled with the shot's name">
+        <figcaption>14 hand-made shots, each adjustable: length, speed, size, lens, turn and height.</figcaption>
+      </figure>
+      <figure>
+        <img src="framekeeper_04_panel_in_blender-1200.jpg" srcset="framekeeper_04_panel_in_blender-1200.jpg 1200w, framekeeper_04_panel_in_blender.jpg 2400w" sizes="(min-width: 1120px) 1080px, 100vw" width="2400" height="1200" loading="lazy" alt="The Framekeeper panel in Blender's sidebar next to the camera view of the ring, with the safe zone drawn in the view">
+        <figcaption>Everything in one sidebar tab; the safe zone is drawn in the camera view.</figcaption>
+      </figure>
     </div>
   </section>
 
   <section class="note" aria-labelledby="how">
     <h3 id="how">How our add-ons are made</h3>
-    <p>The code is written with an AI coding assistant (Claude by Anthropic), working to specifications written and approved by Larklock. Larklock chooses what to build and for whom, sets the goals and limits, reviews the results and makes the product decisions: scope, price, name and which camera shots go into the library. Every feature is covered by automated tests on Blender 4.5 and 5.2. The add-ons themselves contain no AI and work offline. The product images and the demo film are rendered in Blender from Carvable’s own output; only the wood colours (walnut, oak bench) and the out-of-focus workshop behind them come from images generated with Google’s image model.</p>
+    <p>The code is written with an AI coding assistant (Claude by Anthropic), working to specifications written and approved by Larklock. Larklock chooses what to build and for whom, sets the goals and limits, reviews the results and makes the product decisions: scope, price, name and which camera shots go into the library. Every feature is covered by automated tests: Carvable on Blender 4.5 and 5.2, Framekeeper on 4.5, 5.0, 5.1 and 5.2. The add-ons themselves contain no AI and work offline. The product images and demo films are rendered in Blender from each add-on’s own output, and every camera move in the Framekeeper media was computed by Framekeeper. Only the wood colours (walnut, oak) and, in the Carvable media, the out-of-focus workshop behind the bench come from images generated with Google’s image model.</p>
   </section>
 
 </main>
@@ -273,11 +333,11 @@ footer a.mail { font-size: 13px; }
 </footer>
 
 <script>
-/* The silent film loops while it is on screen (not with "reduce motion");
-   the button pauses and resumes it. */
-(() => {
-  const v = document.getElementById("demo");
-  const playBtn = document.querySelector('[data-act="play"]');
+/* Each silent film loops while it is on screen (not with "reduce motion");
+   its button pauses and resumes it. */
+document.querySelectorAll(".film").forEach(film => {
+  const v = film.querySelector("video");
+  const playBtn = film.querySelector(".film-btn");
   let held = matchMedia("(prefers-reduced-motion: reduce)").matches;   // paused by choice
   const sync = () => { playBtn.textContent = v.paused ? "Play" : "Pause"; };
   const play = () => v.play().catch(sync);
@@ -291,7 +351,7 @@ footer a.mail { font-size: 13px; }
     }, { threshold: .35 }).observe(v);
   } else if (!held) play();
   sync();
-})();
+});
 </script>
 </body>
 </html>
