@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Larklock · Blender add-ons for makers</title>
-<meta name="description" content="Larklock makes Blender add-ons for woodworkers, 3D-print makers and product artists: Carvable turns images and height maps into exact bas-reliefs for CNC carving and 3D printing; Framekeeper makes product camera moves that keep the product framed in every format.">
+<meta name="description" content="Larklock makes Blender add-ons for woodworkers, 3D-print makers and product artists: Carvable turns images and height maps into exact bas-reliefs for CNC carving and 3D printing; Framekeeper makes product camera moves that keep the product framed in every format; Stairwright builds stairs and railings measured against building rules.">
 <link rel="canonical" href="https://blender.larklock.com/">
 <meta name="theme-color" content="#0f0d0b">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f0d0b'/%3E%3Ctext x='32' y='47' text-anchor='middle' font-family='Georgia,serif' font-size='44' fill='%23c9a66b'%3EL%3C/text%3E%3C/svg%3E">
@@ -143,6 +143,7 @@ footer a.mail { font-size: 13px; }
   <nav aria-label="Sections">
     <a class="opt" href="#carvable">Carvable</a>
     <a class="opt" href="#framekeeper">Framekeeper</a>
+    <a class="opt" href="#stairwright">Stairwright</a>
     <a href="mailto:hello@larklock.com">Contact</a>
   </nav>
 </header>
@@ -202,7 +203,7 @@ footer a.mail { font-size: 13px; }
             <tr><th>Live preview</th><td>≈ 0.5 s per change (1200 × 1200 px image)</td></tr>
             <tr><th>Export, 200 mm at 10 px/mm</th><td>≈ 1 s, 0.2 GB memory</td></tr>
             <tr><th>Export, 600 mm at 10 px/mm</th><td>≈ 7 s, 1.7 GB memory</td></tr>
-            <tr><th>Automated tests</th><td>84, on Blender 4.5.14 LTS and 5.2.2 LTS</td></tr>
+            <tr><th>Automated tests</th><td>84, on Blender 4.5.14 LTS, 5.0.1, 5.1.2 and 5.2.2 LTS</td></tr>
             <tr><th>Network</th><td>none: no license server, no telemetry</td></tr>
           </tbody>
         </table>
@@ -317,9 +318,87 @@ footer a.mail { font-size: 13px; }
     </div>
   </section>
 
+  <section class="product" id="stairwright" aria-labelledby="stairwright-name">
+    <div class="head">
+      <span class="kicker"><b>03</b> · Blender add-on · version 1.0.0</span>
+      <h2 id="stairwright-name">Stairwright</h2>
+      <div class="tags">
+        <span class="tag gold">Coming after Framekeeper</span>
+        <span class="tag">Blender 4.5 LTS – 5.2 LTS</span>
+        <span class="tag">Straight · L · U · spiral</span>
+        <span class="tag">GPL-3.0-or-later</span>
+      </div>
+    </div>
+    <p class="lead">Stairs and railings you can actually build, not just render. Give it the floor-to-floor height: it works out the steps from the rules you choose, runs one railing along the flight, round the landing and round the opening above, and shows at once whether everything is within the limits.</p>
+
+    <figure>
+      <div class="film">
+        <video muted loop playsinline preload="metadata" poster="stairwright_demo-poster.jpg" width="1920" height="1080" aria-label="Stairwright demo film, 20 seconds">
+          <source src="stairwright_demo-960.mp4" type="video/mp4" media="(max-width: 700px)">
+          <source src="stairwright_demo.mp4" type="video/mp4">
+        </video>
+        <div class="film-ctl">
+          <button type="button" class="film-btn">Play</button>
+        </div>
+      </div>
+      <figcaption>Stairwright in 20 seconds: type the floor height and the stair, the opening and the railing follow; six styles; every rule measured in Blender; 1:1 drawings.</figcaption>
+    </figure>
+
+    <div class="cols">
+      <ul class="points">
+        <li><b>From the floor height.</b> Straight, L, U or spiral, in steel side plates, closed wooden stringers or cut stringers. Every rise and every going equal, in one click.</li>
+        <li><b>One railing, anywhere.</b> Up the flight, round the landing and round the opening in the floor above: balusters, bars, glass or a solid wall. <i>Railing from Selection</i> puts the same railing on any edge of your scene.</li>
+        <li><b>Measured, not assumed.</b> The check measures the finished mesh, not the settings: rises and goings equal to 0.001 mm, headroom with rays every 10 mm, the largest gap in every railing against the code’s sphere.</li>
+        <li><b>Rules with sources.</b> Presets for the USA (IRC 2024, IBC 2024), the UK (Approved Document K), Canada (NBC 2020), Australia (NCC housing) and Poland (WT 2002), plus a comfort rule. It measures against them; it does not certify compliance.</li>
+        <li><b>Fits your space.</b> Select a floor with a stairwell and get the stairs that fit it, with the presets each one passes.</li>
+        <li><b>For makers.</b> A parts list with cut angles and 1:1 outlines of stringers, treads and risers as DXF and SVG, in millimetres or inches.</li>
+      </ul>
+
+      <div class="spec">
+        <table>
+          <caption class="kicker">What it covers</caption>
+          <tbody>
+            <tr><th>Stair types</th><td>straight, L (quarter landing), U (half landing), spiral</td></tr>
+            <tr><th>Styles</th><td>6, each approved by hand</td></tr>
+            <tr><th>Rule presets</th><td>8: IRC 2024, IBC 2024, ADK 2013, NBC 2020, NCC housing, WT 2002 single- and multi-family, comfort; add your own as JSON</td></tr>
+            <tr><th>Headroom check</th><td>rays every 10 mm; 2 million triangles over the stair in under 2 s</td></tr>
+            <tr><th>Drawings</th><td>DXF R12 and SVG, read back: every outline closed, sizes within 0.08&nbsp;%</td></tr>
+            <tr><th>Automated tests</th><td>78, on Blender 4.5.14 LTS, 5.0.1, 5.1.2 and 5.2.2 LTS</td></tr>
+            <tr><th>Network</th><td>none: no license server, no telemetry</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="gallery">
+      <figure>
+        <img src="stairwright_01_one_number-1200.jpg" srcset="stairwright_01_one_number-1200.jpg 1200w, stairwright_01_one_number.jpg 2400w" sizes="(min-width: 1120px) 1080px, 100vw" width="2400" height="1200" loading="lazy" alt="An L-shaped black steel stair with oak treads rising to a mezzanine, one horizontal-bar railing along the flight and the mezzanine, the 2950 mm floor-to-floor height drawn on the wall">
+        <figcaption>Give it the floor height: 16 risers × 184.4 mm to a mezzanine, and every measured rule of USA residential (IRC 2024) passes.</figcaption>
+      </figure>
+      <figure>
+        <img src="stairwright_02_measured_in_blender-1200.jpg" srcset="stairwright_02_measured_in_blender-1200.jpg 1200w, stairwright_02_measured_in_blender.jpg 2400w" sizes="(min-width: 1120px) 1080px, 100vw" width="2400" height="1200" loading="lazy" alt="The Stairwright panel in Blender listing each rule with its measured value and limit, next to the stair with a green headroom outline and a green sphere in the railing gap">
+        <figcaption>The real panel in Blender, in feet and inches: every rule with its measured value and limit, the headroom envelope and the code’s 4″ sphere in the widest gap.</figcaption>
+      </figure>
+      <figure>
+        <img src="stairwright_03_six_styles-1200.jpg" srcset="stairwright_03_six_styles-1200.jpg 1200w, stairwright_03_six_styles.jpg 2400w" sizes="(min-width: 1120px) 1080px, 100vw" width="2400" height="1200" loading="lazy" alt="Six versions of the same stair in the same room: Nordic White, Blackline Loft, Glass Line, Japandi Slat, Transitional and Monolith">
+        <figcaption>Six styles in the same room and light: proportions and materials, not a colour swap. Each one passes IRC 2024.</figcaption>
+      </figure>
+      <div class="pair">
+        <figure>
+          <img src="stairwright_04_drawings-1200.jpg" srcset="stairwright_04_drawings-1200.jpg 1200w, stairwright_04_drawings.jpg 2400w" sizes="(min-width: 1120px) 530px, (min-width: 720px) 50vw, 100vw" width="2400" height="1200" loading="lazy" alt="A 1:1 outline of a cut stringer, a tread and a riser from the exported drawing, next to the parts list with lengths, widths, thicknesses and angles">
+          <figcaption>1:1 outlines from the exported SVG, next to the parts list.</figcaption>
+        </figure>
+        <figure>
+          <img src="stairwright_05_fits_your_opening-1200.jpg" srcset="stairwright_05_fits_your_opening-1200.jpg 1200w, stairwright_05_fits_your_opening.jpg 2400w" sizes="(min-width: 1120px) 530px, (min-width: 720px) 50vw, 100vw" width="2400" height="1200" loading="lazy" alt="Three stairs seen from above, each fitted into the same floor opening: U, L and spiral, with the rule presets each one passes">
+          <figcaption>Fit to Space on a 2600 × 3100 mm opening: U, L and spiral, each with the presets it passes.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <section class="note" aria-labelledby="how">
     <h3 id="how">How our add-ons are made</h3>
-    <p>The code is written with an AI coding assistant (Claude by Anthropic), working to specifications written and approved by Larklock. Larklock chooses what to build and for whom, sets the goals and limits, reviews the results and makes the product decisions: scope, price, name and which camera shots go into the library. Every feature is covered by automated tests: Carvable on Blender 4.5 and 5.2, Framekeeper on 4.5, 5.0, 5.1 and 5.2. The add-ons themselves contain no AI and work offline. The product images and demo films are rendered in Blender from each add-on’s own output, and every camera move in the Framekeeper media was computed by Framekeeper. Only the wood colours (walnut, oak) and, in the Carvable media, the out-of-focus workshop behind the bench come from images generated with Google’s image model.</p>
+    <p>The code is written with an AI coding assistant (Claude by Anthropic), working to specifications written and approved by Larklock. Larklock chooses what to build and for whom, sets the goals and limits, reviews the results and makes the product decisions: scope, price, name, which camera shots go into the library and which stair styles ship. Every feature is covered by automated tests on Blender 4.5, 5.0, 5.1 and 5.2. The add-ons themselves contain no AI and work offline. The product images and demo films are rendered in Blender from each add-on’s own output, and every camera move in the Framekeeper media was computed by Framekeeper. Only the walnut and oak wood colours in the Carvable and Framekeeper media, and the out-of-focus workshop behind the Carvable bench, come from images generated with Google’s image model.</p>
   </section>
 
 </main>
